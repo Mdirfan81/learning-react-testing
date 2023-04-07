@@ -1,0 +1,29 @@
+IMPORTANT, PLEASE READ: axios issue with 1.x
+The issue
+You try to run your tests when a production file imports axios 1.x, and you see this error: 
+
+SyntaxError: Cannot use import statement outside a module  
+
+
+The fix
+There are a few options to get around this error.
+
+Option #1: Install axios 0.27: 
+
+npm install axios@^0.27
+Option #2: Update the npm test script as described in this GitHub issue comment: 
+
+"test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!axios)/\"",
+Option #3: Add this Jest config to your package.json, as described in this GitHub issue comment: 
+
+ "jest": {
+    "moduleNameMapper": {
+      "^axios$": "axios/dist/axios.js"
+    }
+}
+What's going on?
+Looks like axios 1.x and create-react-app don't play well together. See this GitHub issue for more details.
+
+
+
+I am following this issue and I will remove this article when the issue has been resolved! As usual, please ask any questions in the Q&A.
