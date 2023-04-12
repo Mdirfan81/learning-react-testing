@@ -4,9 +4,11 @@ import axios from "axios";
 import ScoopOptions from "./ScoopOptions";
 import { createRequestInterceptor } from "msw";
 import ToppingOption from "./ToppingOption";
+import AlertBanner from "../common/AlertBanner";
 
 function Options({ optionType }) {
   const [items, setItems] = useState([]);
+  const [error, setError] = useState(false);
   //optionType is 'scoops' or 'toppings'
 
   //TODO: replace 'null' with ToppingOption when avaiable
@@ -26,12 +28,16 @@ function Options({ optionType }) {
       .then((response) => {
         setItems(response.data);
       })
-      .catch((err) => {
+      .catch((err) =>
         //TODO: handle error response
-        console.log(err);
-      });
+        // console.log(err);
+        setError(true)
+      );
   }, [optionType]);
 
+  if (error) {
+    return <AlertBanner />;
+  }
   return <Row>{OptionItems}</Row>;
 }
 
