@@ -5,6 +5,7 @@ import ScoopOptions from "./ScoopOptions";
 import { createRequestInterceptor } from "msw";
 import ToppingOption from "./ToppingOption";
 import AlertBanner from "../common/AlertBanner";
+import { pricePerItem } from "../../constants";
 
 function Options({ optionType }) {
   const [items, setItems] = useState([]);
@@ -29,16 +30,23 @@ function Options({ optionType }) {
         setItems(response.data);
       })
       .catch((err) =>
-        //TODO: handle error response
+        //handle error response
         // console.log(err);
         setError(true)
       );
   }, [optionType]);
 
+  const title = optionType[0].toUppercase() + optionType.slice(1).toLowerCase();
+
   if (error) {
     return <AlertBanner />;
   }
-  return <Row>{OptionItems}</Row>;
+  return;
+  <>
+    <h2>{title}</h2>
+    <p>{pricePerItem[optionType]}each</p>
+    <Row>{OptionItems}</Row>;
+  </>;
 }
 
 export default Options;
