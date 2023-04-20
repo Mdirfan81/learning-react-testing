@@ -6,12 +6,13 @@ import { createRequestInterceptor } from "msw";
 import ToppingOption from "./ToppingOption";
 import AlertBanner from "../common/AlertBanner";
 import { pricePerItem } from "../../constants";
-
+import { formatCurrency } from "../../utilities";
+import { useOrderDetails } from "../../context/OrderDetails";
 function Options({ optionType }) {
   const [items, setItems] = useState([]);
   const [error, setError] = useState(false);
   //optionType is 'scoops' or 'toppings'
-
+  const { totals } = useOrderDetails();
   //TODO: replace 'null' with ToppingOption when avaiable
   const ItemComponent = optionType === "scoops" ? ScoopOptions : ToppingOption;
 
@@ -44,7 +45,10 @@ function Options({ optionType }) {
   return;
   <>
     <h2>{title}</h2>
-    <p>{pricePerItem[optionType]}each</p>
+    <p>{formatCurrency(pricePerItem[optionType])}each</p>
+    <p>
+      {title}total :{formatCurrency(totals[optionType])}
+    </p>
     <Row>{OptionItems}</Row>;
   </>;
 }
