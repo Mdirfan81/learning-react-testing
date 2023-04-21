@@ -1,7 +1,5 @@
-import logo from "./logo.svg";
-import "./App.css";
-import SummaryForm from "./pages/summary/SummaryForm";
 import { Container } from "react-bootstrap";
+import SummaryForm from "./pages/summary/SummaryForm";
 import Options from "./pages/entry/Options";
 
 import { OrderDetailsProvider } from "./context/OrderDetails";
