@@ -2,7 +2,8 @@ import React from "react";
 import SummaryForm from "./SummaryForm";
 import { useOrderDetails } from "../../context/OrderDetails";
 import { formatCurreny } from "../../utilities";
-export default function OrderSummary() {
+
+export default function OrderSummary({ setOrderPhase }) {
   const { totals, optionCounts } = useOrderDetails();
 
   const scoopArray = Object.entries(optionCounts.scoops);
@@ -23,7 +24,7 @@ export default function OrderSummary() {
 
       <h2>Toppings:{formatCurreny(totals.toppings)}</h2>
       <ul>{toppingList}</ul>
-      <SummaryForm />
+      <SummaryForm setOrderPhase={setOrderPhase} />
     </div>
   );
 }

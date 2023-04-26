@@ -64,3 +64,14 @@ Error: Warning: Can't perform a React state update on an unmounted component. Th
 Error: cannect ECONNREFUSED 127.0.0.1
 ==> There is no Mock Service Worker handler associated with this route and method.
 ```
+
+### Jest Mock as Props
+
+> In this project we are passing **_setOrderPhase_** as props
+> Added a prop to top levelpage compoenets
+
+> May need to pass as prop when rendering in tests
+> TypeScripts, PropTypes or other prop validators will require
+
+> How to pass when rendering component in test?
+> **_jest.fn()_**

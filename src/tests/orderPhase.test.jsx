@@ -1,3 +1,5 @@
+//  This is function testing / Interegation testing
+
 import { render, screen } from "@testing-library/react";
 import { UserEvent } from "@testing-library/user-event";
 import { userEvent } from "@testing-library/user-event/dist/types/setup";
