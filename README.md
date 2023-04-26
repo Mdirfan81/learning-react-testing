@@ -21,3 +21,46 @@ await waitFor(async ()=>{
     expect(alerts).toHaveLength(2);
 });
 ```
+
+> screen.debug()
+> This will show all code which is in the DOM.
+
+> For Loggin
+
+```js
+import {logRoles} from '@testing-library/dom";
+
+test("Button has correct initial color", ()=>{
+    const {container} = render(<App />);
+    logRoles(container);
+})
+```
+
+```js
+ > Does **_getBy_** fail when there a server call or other async action?
+ > need to use await **_findBy_**
+ > userEvent method without await? (e.g. user.click() )
+ > Read test error output carefully
+  > don't get intimidated huge walls of text!
+
+```
+
+```js
+Error: unable to find role="role" ==> Either role doesn't exist, or no element with that role that also matches name option. We can use scree.debug(); to see the dom element
+
+```
+
+```js
+Error: Warning: An update to component inside a test was not wrapped in act (...)
+There was an update to the compoenent after the test completed. Use ***useEffect*** cleanup and ***unmount()***
+```
+
+```js
+Error: Warning: Can't perform a React state update on an unmounted component. This is no-op, but it indicates a memory leak in your application.
+==> There was an updated to the component state after the test completed. Use ***useEffect*** cleanup and unmount()
+```
+
+```js
+Error: cannect ECONNREFUSED 127.0.0.1
+==> There is no Mock Service Worker handler associated with this route and method.
+```

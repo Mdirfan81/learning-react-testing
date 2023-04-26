@@ -22,15 +22,20 @@ export default function Options({ optionType }) {
     // for this create an abortCOntroller to attach to network request.
 
     const controller = new AbortController();
+    // console.log(`http://localhost:3030/${optionType}`);
     axios
       .get(`http://localhost:3030/${optionType}`, { signal: controller.signal })
       .then((response) => {
         setItems(response.data);
+        console.log("REsponse", optionType);
       })
       .catch((err) => {
         //handle error response
         // console.log(err);
-        if (err.name !== "CanceledError") setError(true);
+        if (err.name !== "CanceledError") {
+          return setError(true);
+        }
+        // return setError(true);
       });
     //abort axios call on component unmount
     //Problem: this may trigger when re-render so
@@ -55,15 +60,16 @@ export default function Options({ optionType }) {
     />
   ));
 
-  return;
-  <React.Fragment>
-    <h2>{title}</h2>
-    <p>{formatCurrency(pricePerItem[optionType])}each</p>
-    <p>
-      {title}total :{formatCurrency(totals[optionType])}
-    </p>
-    <Row>{optionItems}</Row>;
-  </React.Fragment>;
+  return (
+    <React.Fragment>
+      <h2>{title}</h2>
+      <p>{formatCurrency(pricePerItem[optionType])}each</p>
+      <p>
+        {title}total :{formatCurrency(totals[optionType])}
+      </p>
+      <Row>{optionItems}</Row>
+    </React.Fragment>
+  );
 }
 
 // export default Options;
